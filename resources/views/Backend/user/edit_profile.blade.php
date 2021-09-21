@@ -102,8 +102,8 @@
                 <div class="form-group">
                   <h5>Profile Picture<span class="text-danger">*</span></h5>
                   <div class="controls">
-                    <input type="file" id="image" name="image" class="form-control"></div>
-
+                    <input type="file" id="image" name="image" class="form-control">
+                  </div>
                 </div>
               
 

@@ -42,7 +42,6 @@ class ProfileController extends Controller
             $filename = date('YmdHi').$file->getClientOriginalName();
             $file->move(public_path('upload/user_images'),$filename);
             $data ['image'] = $filename;
-        
         }
         $data->save();
         $notification = array('message' =>'User Profile Updated Successfully' , 'alert-type'=>'info' );

@@ -12,9 +12,11 @@ class UserController extends Controller
        // $alldata = User::all();
       //  return view('Backend.user.view_user',compact('alldata'));
 
-        $data['allData'] = User::all();
+        $data['allData'] = User::where('usertype','Admin')->get();
         return view('Backend.user.view_user',$data);
     }
+
+
     public function UserAdd(){
         return view('Backend.user.add_user');
     }
@@ -27,10 +29,13 @@ class UserController extends Controller
         ]);
 
         $data = new User();
-        $data->usertype = $request->usertype;
+        $code = rand(0000,9999);
+        $data->usertype = 'Admin';
+        $data->role = $request->role;
         $data->name = $request->name;
         $data->email = $request->email;
-        $data->password = bcrypt($request->password);
+        $data->password = bcrypt($code);
+        $data->code = $code;
         $data->save();
 
         $notification = array('message' =>'User Inserted Successfully ' , 'alert-type'=>'success' );
@@ -48,9 +53,9 @@ class UserController extends Controller
     public function UserUpdate(Request  $request, $id)
     {
         $data = User::find($id);
-        $data->usertype = $request->usertype;
-        $data->name = $request->name;
+         $data->name = $request->name;
         $data->email = $request->email;
+        $data->role = $request->role;
         $data->save();
 
         $notification = array('message' =>'User Updated Successfully' , 'alert-type'=>'info' );

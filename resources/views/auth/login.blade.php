@@ -99,7 +99,7 @@
 							
 							<div class="text-center">
 								<p class="mt-15 mb-0 text-white">Don't have an account? 
-                                    <a href="{{ route('register') }}" class="text-info ml-5">Sign Up</a></p>
+                                    <a href="{{ route('register') }}" class="text-danger ml-5">Sign Up</a></p>
 							</div>
 						</div>
 					</div>
