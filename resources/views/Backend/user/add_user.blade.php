@@ -33,7 +33,7 @@
                 <div class="form-group">
                   <h5>User Role <span class="text-danger">*</span></h5>
                   <div class="controls">
-                    <select name="role" id="role" required class="form-control">
+                    <select name="role" id="role"  class="form-control">
                       <option value="" selected="" disabled="" >Select Role</option>
                       <option value="Admin">Admin</option>
                       <option value="Operator">Operator</option>
@@ -48,7 +48,7 @@
                 <div class="form-group">
                   <h5>User Name<span class="text-danger">*</span></h5>
                   <div class="controls">
-                    <input type="text" name="name" class="form-control" required=""></div>
+                    <input type="text" name="name" class="form-control" required="" placeholder="Name"></div>
 
                 </div>
               </div>
@@ -63,7 +63,7 @@
                 <div class="form-group">
                   <h5>User email<span class="text-danger">*</span></h5>
                   <div class="controls">
-                    <input type="email" name="email" class="form-control" required=""></div>
+                    <input type="email" name="email" class="form-control" required="" placeholder="Email"></div>
 
                 </div>
               </div>

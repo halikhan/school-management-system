@@ -32,25 +32,25 @@
   
     <tr>
       <td>
-        <h2><?php $image_path = '/upload/abcd.png'; ?>
-          <img src="{{ public_path() . $image_path }}" width="100px" height="80">
-       </h2>
-       </td>
+       <h2><?php $image_path = '/upload/abcd.png'; ?>
+        <img src="{{ public_path() . $image_path }}" width="100px" height="80">
+      </h2>
+      </td>
       <td>
       <h2>School ERP</h2> 
       <p>School Address: Karachi, Pakistan</p>
       <p>Phone Number: 0300-999900011</p>
       <p>School Email: abcdschool@gmail.com</p>
     </td>
-    <td><h5>School Copy</h5></td>
+    <td><h5>School Copy</h5><h6>Exam Fee</h6></td>
     </tr>
     
   </table> <!-- End of 1st Table -->
 
   @php
-        $registrationfee = App\Models\FeeAmount::where('fee_category_id','1')
+        $examfee = App\Models\FeeAmount::where('fee_category_id','3')
         ->where('class_id',$details->class_id)->first();
-        $originalfee = $registrationfee->amount;
+        $originalfee = $examfee->amount;
         $discount = $details['discount']['discount'];
         $discounttablefee = $discount/100*$originalfee;
         $finalfee = (float)$originalfee-(float)$discounttablefee;
@@ -102,12 +102,12 @@
   </tr>
   <tr>
     <td>08</td>
-    <td><b>Registration Fee</b></td>
+    <td><b>Exam Fee</b></td>
     <td>{{ $originalfee }} pkr</td>
   </tr>
   <tr>
     <td>09</td>
-    <td><b>Fee of this Student</b></td>
+    <td><b>Fee of {{ $exam_type }}</b></td>
     <td>{{ $finalfee }} pkr</td>
   </tr>
 </table>
@@ -131,7 +131,7 @@
     <p>Phone Number: 0300-999900011</p>
     <p>School Email: abcdschool@gmail.com</p>
   </td>
-  <td><h5>Student Copy</h5></td>
+  <td><h5>Student Copy</h5><h6>Exam Fee</h6></td>
   </tr>
   
 </table> <!-- End of 2nd Table -->
@@ -180,16 +180,16 @@
   </tr>
   <tr>
     <td>08</td>
-    <td><b>Registration Fee</b></td>
+    <td><b>Exam Fee</b></td>
     <td>{{ $originalfee }} pkr</td>
   </tr>
   <tr>
     <td>09</td>
-    <td><b>Fee of this Student</b></td>
+    <td><b>Fee of {{ $exam_type }}</b></td>
     <td>{{ $finalfee }} pkr</td>
   </tr>
 </table>
-<br>
+<br> 
 <i Style="font-size: 10px; float: right;"> Print Date: {{ date("D M Y") }} </i> <!-- End of 2nd Table -->
 
 </body>

@@ -13,7 +13,8 @@ use App\Models\StudentClass;
 use App\Models\StudentGroup;
 use App\Models\StudentShift;
 use Illuminate\Support\Facades\DB;
-use PDF;
+use niklasravnsborg\LaravelPdf\Facades\Pdf as FacadesPdf;
+
 
 
 class StudentRegController extends Controller
@@ -277,7 +278,7 @@ class StudentRegController extends Controller
     {
         $data['details'] = AssignStudents::with(['student','discount'])->
         where('student_id',$student_id)->first();
-        $pdf = PDF::loadView('Backend.Student.Student_Reg.Student_details_PDF', $data);
+        $pdf = FacadesPdf::loadView('Backend.Student.Student_Reg.Student_details_PDF', $data);
         $pdf->SetProtection(['copy', 'print'], '', 'pass');
         return $pdf->stream('document.pdf');
 

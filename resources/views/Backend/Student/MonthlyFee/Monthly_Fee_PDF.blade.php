@@ -42,15 +42,15 @@
       <p>Phone Number: 0300-999900011</p>
       <p>School Email: abcdschool@gmail.com</p>
     </td>
-    <td><h5>School Copy</h5></td>
+    <td><h5>School Copy</h5><h6>Monthly Fee</h6></td>
     </tr>
     
   </table> <!-- End of 1st Table -->
 
   @php
-        $registrationfee = App\Models\FeeAmount::where('fee_category_id','1')
+        $monthlyfee = App\Models\FeeAmount::where('fee_category_id','2')
         ->where('class_id',$details->class_id)->first();
-        $originalfee = $registrationfee->amount;
+        $originalfee = $monthlyfee->amount;
         $discount = $details['discount']['discount'];
         $discounttablefee = $discount/100*$originalfee;
         $finalfee = (float)$originalfee-(float)$discounttablefee;
@@ -102,12 +102,12 @@
   </tr>
   <tr>
     <td>08</td>
-    <td><b>Registration Fee</b></td>
+    <td><b>Monthly Fee</b></td>
     <td>{{ $originalfee }} pkr</td>
   </tr>
   <tr>
     <td>09</td>
-    <td><b>Fee of this Student</b></td>
+    <td><b>Fee of {{ $month }}</b></td>
     <td>{{ $finalfee }} pkr</td>
   </tr>
 </table>
@@ -131,7 +131,7 @@
     <p>Phone Number: 0300-999900011</p>
     <p>School Email: abcdschool@gmail.com</p>
   </td>
-  <td><h5>Student Copy</h5></td>
+  <td><h5>Student Copy</h5><h6>Monthly Fee</h6></td>
   </tr>
   
 </table> <!-- End of 2nd Table -->
@@ -180,16 +180,16 @@
   </tr>
   <tr>
     <td>08</td>
-    <td><b>Registration Fee</b></td>
+    <td><b>Monthly Fee</b></td>
     <td>{{ $originalfee }} pkr</td>
   </tr>
   <tr>
     <td>09</td>
-    <td><b>Fee of this Student</b></td>
+    <td><b>Fee of {{ $month }}</b></td>
     <td>{{ $finalfee }} pkr</td>
   </tr>
 </table>
-<br>
+<br> 
 <i Style="font-size: 10px; float: right;"> Print Date: {{ date("D M Y") }} </i> <!-- End of 2nd Table -->
 
 </body>

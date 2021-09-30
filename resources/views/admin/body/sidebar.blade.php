@@ -20,7 +20,7 @@
             <a href="{{ route('dashboard') }}">
                <img src="{{ asset('backend/images/logo-dark.png') }}" alt="">
               </a>
-						  <h4><a href="{{ route('dashboard') }}"><b>ABCD </b>Sec School </a></h4>
+						  <h4><a href="{{ route('dashboard') }}"><b>ABCD </b>School </a></h4>
               
 					 </div>
 				</a>
@@ -100,10 +100,25 @@
             <li><a href="{{ route('student.reg.veiw') }}"><i class="ti-more"></i>Student Registration</a></li>
              <li><a href="{{ route('roll.generate.veiw') }}"><i class="ti-more"></i>Roll Generate</a></li>
              <li><a href="{{ route('registration.fee.veiw') }}"><i class="ti-more"></i>Registration Fee</a></li>
+             <li><a href="{{ route('monthly.fee.veiw') }}"><i class="ti-more"></i>Monthly Fee</a></li>
+             <li><a href="{{ route('exam.fee.veiw') }}"><i class="ti-more"></i>Exam Fee</a></li>
             
           </ul>
         </li>
-		 
+        
+        <li class="treeview {{ ($prefix== '/employees')?'active':'' }}">
+          <a href="#">
+            <i data-feather="mail"></i> <span>Employee Management</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ route('employee.reg.veiw') }}"><i class="ti-more"></i>Employee Registration</a></li>
+            <li><a href="{{ route('employee.salary.veiw') }}"><i class="ti-more"></i>Employee Salary</a></li>
+             
+          </ul>
+        </li>
 
 
 
@@ -135,6 +150,7 @@
 		<!-- item-->
 		<a href="mailbox_inbox.html" class="link" data-toggle="tooltip" title="" data-original-title="Email"><i class="ti-email"></i></a>
 		<!-- item-->
-		<a href="javascript:void(0)" class="link" data-toggle="tooltip" title="" data-original-title="Logout"><i class="ti-lock"></i></a>
+		<a href="{{ route('admin.logout') }}" class="link" data-toggle="tooltip" title="" data-original-title="Logout"><i class="ti-lock"></i></a>
+    
 	</div>
   </aside>

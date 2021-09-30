@@ -18,6 +18,11 @@ use App\Http\Controllers\Backend\Setup\DesignationController;
 use App\Http\Controllers\Backend\Student\StudentRegController;
 use App\Http\Controllers\Backend\Student\StudentRollController;
 use App\Http\Controllers\Backend\Student\RegistraionFeeController;
+use App\Http\Controllers\Backend\Student\MonthlyFeeController;
+use App\Http\Controllers\Backend\Student\ExamFeeController;
+
+use App\Http\Controllers\Backend\Employee\EmployeeRegController;
+use App\Http\Controllers\Backend\Employee\EmployeeSallaryController;
 
 
 /*
@@ -41,6 +46,11 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::get('/admin/logout', [Admincontroller::class, 'logout' ])->name('admin.logout');
 
+
+// Route for redirect to login if you are not loging and paste any URL of the project
+Route::group(['middleware' =>'auth'],function(){
+
+
 // All Routes regarding User Management
 
 Route::prefix('users')->group(function(){
@@ -52,7 +62,7 @@ Route::prefix('users')->group(function(){
     Route::post('/update/{id}', [UserController::class, 'UserUpdate' ])->name('user.update');
     Route::get('/delete/{id}', [UserController::class, 'UserDelete' ])->name('user.delete');
     
-});
+}); // End of User
 
 
 // All Routes regarding Profile and Password
@@ -65,7 +75,7 @@ Route::prefix('profile')->group(function(){
     Route::get('/password/veiw', [ProfileController::class, 'PasswordView' ])->name('password.veiw');
     Route::post('/password/update', [ProfileController::class, 'PasswordUpdate' ])->name('password.update');
    
-});
+}); // End of profile
 
 
 // All Routes regarding Setup Management
@@ -127,7 +137,6 @@ Route::prefix('setups')->group(function(){
 //Route::get('/Fee/Amount/delete/{id}', [FeeAmountController::class, 'FeeAmountDelete' ])->name('Fee.Amount.delete');
 
 
-
 // All routes about Exam Type
 
     Route::get('/Exam/Type/veiw', [ExamTypeController::class, 'VeiwExamType' ])->name('Exam.Type.veiw');
@@ -172,7 +181,7 @@ Route::prefix('setups')->group(function(){
 
 
     
-});
+});  // End of setups
 
 // All Routes regarding Student Management
 
@@ -195,13 +204,58 @@ Route::prefix('students')->group(function(){
     Route::post('/roll/generate/store', [StudentRollController::class, 'RollGenerateStore' ])->name('roll.generate.store');
     
 
-    // All Routes regarding Student Registraion
+    // All Routes regarding Student Registraion Fee
 
     Route::get('/registration/fee/veiw', [RegistraionFeeController::class, 'RegFeeView' ])->name('registration.fee.veiw');
     Route::get('/registration/fee/classwise', [RegistraionFeeController::class, 'RegFeeClassWise' ])->name('registration.fee.classwise.get');
     Route::get('/registration/fee/payslip', [RegistraionFeeController::class, 'RegFeePaySlip' ])->name('registration.fee.payslip');
   
+    // All Routes regarding Student Monthly Fee
+
+     Route::get('/monthly/fee/veiw', [MonthlyFeeController::class, 'MonthlyFeeView' ])->name('monthly.fee.veiw');
+     Route::get('/monthly/fee/classwise', [MonthlyFeeController::class, 'MonthlyFeeClassWise' ])->name('monthly.fee.classwise.get');
+     Route::get('/monthly/fee/payslip', [MonthlyFeeController::class, 'MonthlyFeePaySlip' ])->name('monthly.fee.payslip');
+   
+    // All Routes regarding Student Monthly Fee
+
+     Route::get('/exam/fee/veiw', [ExamFeeController::class, 'ExamFeeView' ])->name('exam.fee.veiw');
+     Route::get('/exam/fee/classwise', [ExamFeeController::class, 'ExamFeeClassWise' ])->name('exam.fee.classwise.get');
+     Route::get('/exam/fee/payslip', [ExamFeeController::class, 'ExamFeePaySlip' ])->name('exam.fee.payslip');
+  
     
+}); // End of students
+
+
+// All Routes regarding Employee Management
+
+Route::prefix('employees')->group(function(){
+
+    // All Routes regarding Employee Registrations
+
+    Route::get('/reg/employee/veiw', [EmployeeRegController::class, 'EmployeeRegView' ])->name('employee.reg.veiw');
+    Route::get('/reg/employee/add', [EmployeeRegController::class, 'EmployeeRegAdd' ])->name('employee.reg.add');
+    Route::post('/reg/employee/store', [EmployeeRegController::class, 'EmployeeRegStore' ])->name('store.employee.reg');
+    Route::get('/reg/employee/edit/{id}', [EmployeeRegController::class, 'EmployeeRegEdit' ])->name('employee.reg.edit');
+    Route::post('/reg/employee/update/{id}', [EmployeeRegController::class, 'EmployeeRegUpdate' ])->name('employee.reg.update');
+    Route::get('/reg/employee/details/{id}', [EmployeeRegController::class, 'EmployeeRegDetails' ])->name('employee.reg.details');
     
+
+    // All Routes regarding Employee Sallary
+
+
+    Route::get('salary/employee/veiw', [EmployeeSallaryController::class, 'EmployeeSalaryView' ])->name('employee.salary.veiw');
+    Route::get('salary/employee/increment/{id}', [EmployeeSallaryController::class, 'EmployeeSalaryIncrement' ])->name('employee.salary.increment');
+    Route::post('salary/employee/store/{id}', [EmployeeSallaryController::class, 'EmployeeStoretUpdate' ])->name('update.store.increment');
+    Route::get('salary/employee/details/{id}', [EmployeeSallaryController::class, 'EmployeeIncrementDetails' ])->name('employee.increment.details');
     
-});
+   
+}); // End of employees 
+
+
+
+
+
+
+
+
+}); // End of Middleware Auth Route

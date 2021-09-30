@@ -15,19 +15,19 @@ use App\Models\StudentShift;
 use Illuminate\Support\Facades\DB;
 use niklasravnsborg\LaravelPdf\Facades\Pdf as FacadesPdf;
 
-
-class RegistraionFeeController extends Controller
+class MonthlyFeeController extends Controller
 {
-   public function RegFeeView()
+    
+public function MonthlyFeeView()
    {
     $data['years'] = StudentYear::all();
     $data['classes'] = StudentClass::all();
-    return view('Backend.Student.RegistrationFee.Reg_Fee_view',$data);
+    return view('Backend.Student.MonthlyFee.Monthly_Fee_view',$data);
 
 } //End of RegFeeView method
 
 
-public function RegFeeClassWise(Request $request){
+public function MonthlyFeeClassWise(Request $request){
     $year_id = $request->year_id;
     $class_id = $request->class_id;
     if ($year_id !='') {
@@ -42,23 +42,23 @@ public function RegFeeClassWise(Request $request){
     $html['thsource'] .= '<th>ID No</th>';
     $html['thsource'] .= '<th>Student Name</th>';
     $html['thsource'] .= '<th>Roll No</th>';
-    $html['thsource'] .= '<th>Reg Fee</th>';
+    $html['thsource'] .= '<th>Monthly Fee</th>';
     $html['thsource'] .= '<th>Discount </th>';
     $html['thsource'] .= '<th>Student Fee </th>';
     $html['thsource'] .= '<th>Action</th>';
 
 
     foreach ($allStudent as $key => $v) {
-        $registrationfee = FeeAmount::where('fee_category_id','1')->where('class_id',$v->class_id)->first();
+        $monthlyfee = FeeAmount::where('fee_category_id','2')->where('class_id',$v->class_id)->first();
         $color = 'success';
         $html[$key]['tdsource']  = '<td>'.($key+1).'</td>';
         $html[$key]['tdsource'] .= '<td>'.$v['student']['id_no'].'</td>';
         $html[$key]['tdsource'] .= '<td>'.$v['student']['name'].'</td>';
         $html[$key]['tdsource'] .= '<td>'.$v->roll.'</td>';
-        $html[$key]['tdsource'] .= '<td>'.$registrationfee->amount.'</td>';
+        $html[$key]['tdsource'] .= '<td>'.$monthlyfee->amount.'</td>';
         $html[$key]['tdsource'] .= '<td>'.$v['discount']['discount'].'%'.'</td>';
         
-        $originalfee = $registrationfee->amount;
+        $originalfee = $monthlyfee->amount;
         $discount = $v['discount']['discount'];
         $discounttablefee = $discount/100*$originalfee;
         $finalfee = (float)$originalfee-(float)$discounttablefee;
@@ -66,29 +66,32 @@ public function RegFeeClassWise(Request $request){
         $html[$key]['tdsource'] .='<td>'.$finalfee.' PKR'.'</td>';
         $html[$key]['tdsource'] .='<td>';
         $html[$key]['tdsource'] .='<a class="btn btn-sm btn-'.$color.'" title="PaySlip" target="_blanks" 
-        href="'.route("registration.fee.payslip").'?class_id='.$v->class_id.
-        '&student_id='.$v->student_id.'">Fee Slip</a>';
+        href="'.route("monthly.fee.payslip").'?class_id='.$v->class_id.
+        '&student_id='.$v->student_id.'&month='.$request->month.' ">Fee Slip</a>';
         $html[$key]['tdsource'] .= '</td>';
 
     }  
    return response()->json(@$html);
 
-}// end RegFeeClassWise method 
+}// end MonthFeeClassWise method 
 
-public function RegFeePaySlip(Request $request)
+
+
+public function MonthlyFeePaySlip(Request $request)
 {
     $student_id = $request->student_id;
     $class_id = $request->class_id;
-    $allStudent['details'] = AssignStudents::with('student','discount')->
+    $data['month'] = $request->month;
+
+    $data['details'] = AssignStudents::with('student','discount')->
     where('student_id',$student_id)->where('class_id',$class_id)->first();
 
-    $pdf = FacadesPdf::loadView('Backend.Student.RegistrationFee.registration_fee_PDF', $allStudent);
+    $pdf = FacadesPdf::loadView('Backend.Student.MonthlyFee.Monthly_Fee_PDF', $data);
     $pdf->SetProtection(['copy', 'print'], '', 'pass');
-    return $pdf->stream('document.pdf'); 
+    return $pdf->stream('document.pdf');
 
 
-}// end RegFeePaySlip method 
-
+}// end MonthlyFeePaySlip method 
 
 
 
