@@ -28,8 +28,8 @@
             
             {{--  Row Started --}}
             <div class="row">	
-              {{--  col 6 start point --}}
-              <div class="col-6">
+             
+              <div class="col-6"> {{--  col 6 start point --}}
                 <div class="form-group">
                   <h5>User Role <span class="text-danger">*</span></h5>
                   <div class="controls">

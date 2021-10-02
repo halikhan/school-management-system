@@ -34,4 +34,6 @@ class AssignStudents extends Model
     {
         return $this->belongsTo(StudentGroup::class, 'group_id', 'id');
     }
-}
+
+
+} //End Modals
