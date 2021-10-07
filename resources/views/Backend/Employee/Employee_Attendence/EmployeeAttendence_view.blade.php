@@ -25,9 +25,9 @@
 
 			 <div class="box">
 				<div class="box-header with-border">
-				  <h3 class="box-title">Employee Leave</h3>
-                  <a href="{{ route('employee.leave.add') }}" class="btn btn-rounded btn-success mb-5" 
-                  style="float: right;">Add Employee Leave</a>
+				  <h3 class="box-title">Employee Attendence List</h3>
+                  <a href="{{ route('employee.attendence.add') }}" class="btn btn-rounded btn-success mb-5" 
+                  style="float: right;">Add Attendence</a>
 				</div>
 				<!-- /.box-header -->
 				<div class="box-body">
@@ -36,29 +36,20 @@
 						<thead>
 							<tr>
 								<th width="5%">SL</th>
-								<th>name</th>
-                                <th>ID NO</th>
-                                <th>Purpose</th>
-                                <th>Start Date</th>
-                                <th>End Date</th>
+                                <th>Date</th>
 								<th width="25%">Action</th>
-								
 							</tr>
 						</thead>
 						<tbody>
-							@foreach ( $allData as $key=> $leave)
+							@foreach ( $allData as $key=> $value)
 								
 							<tr>
 								<td>{{ $key+1 }}</td>
-								<td>{{ $leave['user']['name'] }}</td>
-                                <td>{{ $leave['user']['id_no'] }}</td>
-                                <td>{{ $leave['purpose']['name'] }}</td>
-                                <td>{{ $leave->start_date }}</td>
-                                <td>{{ $leave->end_date }}</td>
-								  
+                                <td>{{ date('d-m-Y',strtotime($value->date))}}</td>
+								
 								<td>
-								<a href="{{ route('employee.leave.edit',$leave->id) }}" class="btn btn-info"><i class="fa fa-edit">Edit</i></a>
-								<a href="{{ route('employee.leave.delete',$leave->id) }}" class="btn btn-danger" id="delete"><i class="fa fa-trash"></i></a>
+								<a title="Edit" href="{{ route('employee.attendence.edit',$value->date) }}" class="btn btn-info"><i class="fa fa-edit"> Edit</i></a>
+								<a title="Details" href="{{ route('employee.attendence.details',$value->date) }}" class="btn btn-danger"><i class="fa fa-eye"> Details</i></a>
 								</td>
 							</tr>	
 							@endforeach			

@@ -24,6 +24,11 @@ use App\Http\Controllers\Backend\Student\ExamFeeController;
 use App\Http\Controllers\Backend\Employee\EmployeeRegController;
 use App\Http\Controllers\Backend\Employee\EmployeeSallaryController;
 use App\Http\Controllers\Backend\Employee\EmployeeLeaveController;
+use App\Http\Controllers\Backend\Employee\EmployeeAttendanceController;
+use App\Http\Controllers\Backend\Employee\EmployeeMonthlySalaryController;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -259,13 +264,38 @@ Route::prefix('employees')->group(function(){
     Route::get('leave/employee/edit/{id}', [EmployeeLeaveController::class, 'EmployeeLeaveEdit' ])->name('employee.leave.edit');
     Route::post('leave/employee/update/{id}', [EmployeeLeaveController::class, 'EmployeeLeaveUpdate' ])->name('update.employee.leave');
     Route::get('leave/employee/delete/{id}', [EmployeeLeaveController::class, 'EmployeeLeaveDelete' ])->name('employee.leave.delete');
+
+
+
    
+    // All Routes regarding Employee attendance
+
+
+    Route::get('attendance/employee/veiw', [EmployeeAttendanceController::class, 'EmpAttendanceView' ])->name('employee.attendance.veiw');
+    Route::get('attendance/employee/Add', [EmployeeAttendanceController::class, 'EmpAttendanceAdd' ])->name('employee.attendence.add');
+    Route::post('attendance/employee/Store', [EmployeeAttendanceController::class, 'EmpAttendanceStore' ])->name('store.employee.attendence');
+    Route::get('attendance/employee/Edit/{date}', [EmployeeAttendanceController::class, 'EmpAttendanceEdit' ])->name('employee.attendence.edit');
+    Route::get('attendance/employee/details/{date}', [EmployeeAttendanceController::class, 'EmpAttendanceDetails' ])->name('employee.attendence.details');
+    
+    
+    // All Routes regarding Employee monthly Salary
+
+    Route::get('monthly/Salary/veiw', [EmployeeMonthlySalaryController::class, 'MonthlySalaryView' ])->name('monthly.salary.veiw');
+    Route::get('monthly/Salary/get', [EmployeeMonthlySalaryController::class, 'MonthlySalaryGet' ])->name('employee.monthly.salary.get');
+    Route::get('monthly/Salary/payslip', [EmployeeMonthlySalaryController::class, 'MonthlySalaryPayslip' ])->name('employee.monthly.salary.payslip');
+    
+    
+
     
     
 
 
-    
-   
+
+
+
+
+
+
 }); // End of employees 
 
 

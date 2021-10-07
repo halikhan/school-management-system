@@ -117,7 +117,9 @@
             <li><a href="{{ route('employee.reg.veiw') }}"><i class="ti-more"></i>Employee Registration</a></li>
             <li><a href="{{ route('employee.salary.veiw') }}"><i class="ti-more"></i>Employee Salary</a></li>
             <li><a href="{{ route('employee.leave.veiw') }}"><i class="ti-more"></i>Employee Leave</a></li>
-             
+            <li><a href="{{ route('employee.attendance.veiw') }}"><i class="ti-more"></i>Employee Attendance</a></li>
+            <li><a href="{{ route('monthly.salary.veiw') }}"><i class="ti-more"></i>Employee Monthly Salary</a></li>
+            
           </ul>
         </li>
 
