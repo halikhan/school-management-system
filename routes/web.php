@@ -27,6 +27,8 @@ use App\Http\Controllers\Backend\Employee\EmployeeLeaveController;
 use App\Http\Controllers\Backend\Employee\EmployeeAttendanceController;
 use App\Http\Controllers\Backend\Employee\EmployeeMonthlySalaryController;
 
+use App\Http\Controllers\Backend\Marks\MarksEntryController;
+use App\Http\Controllers\Backend\DefaultEntryController;
 
 
 
@@ -282,25 +284,34 @@ Route::prefix('employees')->group(function(){
 
     Route::get('monthly/Salary/veiw', [EmployeeMonthlySalaryController::class, 'MonthlySalaryView' ])->name('monthly.salary.veiw');
     Route::get('monthly/Salary/get', [EmployeeMonthlySalaryController::class, 'MonthlySalaryGet' ])->name('employee.monthly.salary.get');
-    Route::get('monthly/Salary/payslip', [EmployeeMonthlySalaryController::class, 'MonthlySalaryPayslip' ])->name('employee.monthly.salary.payslip');
+    Route::get('monthly/Salary/payslip/{employee_id}', [EmployeeMonthlySalaryController::class, 'MonthlySalaryPayslip' ])->name('employee.monthly.salary.payslip');
     
     
-
-    
-    
-
-
-
-
-
-
-
 
 }); // End of employees 
 
 
+// All Routes regarding Marks Management
 
+Route::prefix('marks')->group(function(){
 
+    // All Routes regarding Marks Management 
+
+    Route::get('/mark/entry/add', [MarksEntryController::class, 'MarkEntryAdd' ])->name('mark.entry.add');
+    Route::post('/mark/entry/store', [MarksEntryController::class, 'MarkEntryStore' ])->name('marks.entry.store');
+    Route::get('/mark/entry/edit', [MarksEntryController::class, 'MarksEdit' ])->name('mark.entry.edit');
+    Route::get('/student/marksEdit/edit', [MarksEntryController::class, 'GetEditMarks' ])->name('student.marksEdit.getmarks');
+    Route::post('/mark/entry/update', [MarksEntryController::class, 'MarksUpdate' ])->name('marks.entry.update');
+   
+    
+    
+      
+
+}); // End of Marks Management 
+
+Route::get('/mark/getsubject', [DefaultEntryController::class, 'GetSubjects' ])->name('marks.getsubject');
+Route::get('/mark/getstudent', [DefaultEntryController::class, 'GetStudentsMarks' ])->name('student.marks.getstudents');
+    
 
 
 

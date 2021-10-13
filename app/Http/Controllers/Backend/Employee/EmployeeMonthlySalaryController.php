@@ -21,6 +21,7 @@ use App\Models\EmployeeSallaryLog;
 use App\Models\EmployeeLeave;
 use App\Models\LeavePurpose;
 use App\Models\EmployeeAttendence;
+
 use phpDocumentor\Reflection\Types\Float_;
 
 class EmployeeMonthlySalaryController extends Controller
@@ -80,10 +81,30 @@ class EmployeeMonthlySalaryController extends Controller
     }// end MonthlySalaryGet method 
     
 
-    public function MonthlySalaryPayslip(Request $request)
+    public function MonthlySalaryPayslip(Request $request,$employee_id)
     {
-        # code...
-    }
+    
+    $id = EmployeeAttendence::where('employee_id',$employee_id)->first();
+    $date = date('Y-m',strtotime($id->date));
+
+    if ($date !='') {
+            $where[] = ['date','like',$date.'%'];
+        }
+    
+    $data['details'] = EmployeeAttendence::with(['user'])->where($where)->where
+    ('employee_id',$id->employee_id)->get();
+    $pdf = FacadesPdf::loadView('Backend.Employee.Monthly_Salary.MonthlySalary_PDF', $data);
+    $pdf->SetProtection(['copy', 'print'], '', 'pass');
+    return $pdf->stream('document.pdf'); 
+
+
+    }// end MonthlySalary PaySlip method 
+
+
+
+
+
+
 
 
 
