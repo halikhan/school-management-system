@@ -29,6 +29,9 @@ use App\Http\Controllers\Backend\Employee\EmployeeMonthlySalaryController;
 
 use App\Http\Controllers\Backend\Marks\MarksEntryController;
 use App\Http\Controllers\Backend\DefaultEntryController;
+use App\Http\Controllers\Backend\Marks\MarksGradeController;
+
+
 
 
 
@@ -295,7 +298,7 @@ Route::prefix('employees')->group(function(){
 
 Route::prefix('marks')->group(function(){
 
-    // All Routes regarding Marks Management 
+    // All Routes regarding Marks Entry 
 
     Route::get('/mark/entry/add', [MarksEntryController::class, 'MarkEntryAdd' ])->name('mark.entry.add');
     Route::post('/mark/entry/store', [MarksEntryController::class, 'MarkEntryStore' ])->name('marks.entry.store');
@@ -303,8 +306,23 @@ Route::prefix('marks')->group(function(){
     Route::get('/student/marksEdit/edit', [MarksEntryController::class, 'GetEditMarks' ])->name('student.marksEdit.getmarks');
     Route::post('/mark/entry/update', [MarksEntryController::class, 'MarksUpdate' ])->name('marks.entry.update');
    
+    // All Routes regarding Marks Entry Grades
+
+    Route::get('/grade/mark/view', [MarksGradeController::class, 'MarkGradeView' ])->name('mark.entry.grade');
+    Route::get('/grade/mark/add', [MarksGradeController::class, 'MarkGradeAdd' ])->name('marks.grade.add');
+    Route::post('/grade/mark/store', [MarksGradeController::class, 'MarkGradeStore' ])->name('store.marks.grade');
+    Route::get('/grade/mark/edit/{id}', [MarksGradeController::class, 'MarkGradeEdit' ])->name('marks.grade.edit');
+    Route::post('/grade/mark/update/{id}', [MarksGradeController::class, 'MarkGradeUpdate' ])->name('update.marks.grade');
     
     
+   
+    
+
+
+
+
+
+
       
 
 }); // End of Marks Management 
