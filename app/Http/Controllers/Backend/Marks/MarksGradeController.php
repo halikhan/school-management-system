@@ -33,11 +33,11 @@ class MarksGradeController extends Controller
 {
    
     public function MarkGradeView()
-    {
+    { 
        
         $data['allData'] = MarksGrade::all();
         return view('Backend.Marks.Marks_Grade.Marks_Grade_view', $data);
-
+  
 
     } // End of MarksGrade View
 

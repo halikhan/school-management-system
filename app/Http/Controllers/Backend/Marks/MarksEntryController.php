@@ -122,7 +122,7 @@ class MarksEntryController extends Controller
                 $data->save();
 
 
-            } //end of loop
+            } //end of loop  
         } //end of IF cond
     
              $notification = array('message' =>'Student Marks Updated Successfully' ,

@@ -31,6 +31,8 @@ use App\Http\Controllers\Backend\Marks\MarksEntryController;
 use App\Http\Controllers\Backend\DefaultEntryController;
 use App\Http\Controllers\Backend\Marks\MarksGradeController;
 
+use App\Http\Controllers\Backend\Account\StudentFeeController;
+use App\Http\Controllers\Backend\Account\AccountEmpSalaryController;
 
 
 
@@ -315,13 +317,6 @@ Route::prefix('marks')->group(function(){
     Route::post('/grade/mark/update/{id}', [MarksGradeController::class, 'MarkGradeUpdate' ])->name('update.marks.grade');
     
     
-   
-    
-
-
-
-
-
 
       
 
@@ -330,6 +325,42 @@ Route::prefix('marks')->group(function(){
 Route::get('/mark/getsubject', [DefaultEntryController::class, 'GetSubjects' ])->name('marks.getsubject');
 Route::get('/mark/getstudent', [DefaultEntryController::class, 'GetStudentsMarks' ])->name('student.marks.getstudents');
     
+
+// All Routes regarding Accounts Management
+
+Route::prefix('accounts')->group(function(){
+
+    // All Routes regarding Student Fee
+
+    Route::get('/Student/fee/view', [StudentFeeController::class, 'AccountStdFeeView' ])->name('student.fee.view');
+    Route::get('/Student/fee/add', [StudentFeeController::class, 'AccountStdFeeAdd' ])->name('student.fee.add');
+    Route::get('/Student/fee/getstudents', [StudentFeeController::class, 'AccountFeeGetStudents' ])->name('account.fee.getstudents');
+    Route::post('/Student/fee/store', [StudentFeeController::class, 'AccountFeeStore' ])->name('store.account.fee');
+   
+   
+    // All Routes regarding Employee Salary
+
+    Route::get('/account/empfee/view', [AccountEmpSalaryController::class, 'AccountEmpSalaryView' ])->name('account.empfee.view');
+    Route::get('/account/empsalary/add', [AccountEmpSalaryController::class, 'AccountEmpSalaryAdd' ])->name('account.empsalary.add');
+    Route::get('/account/empsalary/getemployees', [AccountEmpSalaryController::class, 'AccountGetEmployee' ])->name('account.empsalary.getemployees');
+    Route::post('/account/empsalary/store', [AccountEmpSalaryController::class, 'AccountEmployeeStore' ])->name('store.account.empsalary');
+    
+   
+    
+   
+
+
+
+}); // End of Accounts Management
+
+
+
+
+
+
+
+
+
 
 
 

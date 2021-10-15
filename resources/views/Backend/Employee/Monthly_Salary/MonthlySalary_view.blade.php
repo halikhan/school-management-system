@@ -8,7 +8,7 @@
 
 
   <div class="content-wrapper">
-	  <div class="container-full">
+	  <div class="container-full">  
 		<section class="content">
 			<div class="row"><!-- 1st row -->
 			<div class="col-12">
