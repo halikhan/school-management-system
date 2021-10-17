@@ -24,7 +24,7 @@
 
 					  <h6 class="widget-user-desc">User Type: {{ $user->usertype }}</h6>
                       <h6 class="widget-user-desc">User Email: {{ $user->email }}</h6>
-					</div>
+					</div> 
 					<div class="widget-user-image">
 					  <img class="rounded-circle" src="{{ (!empty($user->image))? 
 					  url('upload/user_images/'.$user->image):url('upload/no_image.jpg') }}" 

@@ -63,7 +63,8 @@ class StudentFeeController extends Controller
    $fee_category_id = $request->fee_category_id;
    $date = date('Y-m',strtotime($request->date));    	   
      
-$data = AssignStudents::with(['discount'])->where('year_id',$year_id)->where('class_id',$class_id)->get();
+      $data = AssignStudents::with(['discount'])->where('year_id',$year_id)->
+      where('class_id',$class_id)->get();
      
        $html['thsource']  = '<th>ID No</th>';
        $html['thsource'] .= '<th>Student Name</th>';

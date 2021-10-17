@@ -25,9 +25,9 @@
  
 			 <div class="box">
 				<div class="box-header with-border">
-				  <h3 class="box-title">Salary List of Paid Employees</h3>
-                  <a href="{{ route('account.empsalary.add') }}" class="btn btn-rounded btn-success mb-5" 
-                  style="float: right;">Add / Edit Employee Salary</a>
+				  <h3 class="box-title">Other Cost List</h3>
+                  <a href="{{ route('other.cost.add') }}" class="btn btn-rounded btn-success mb-5" 
+                  style="float: right;">Add Other Cost</a>
 				</div>
 				<!-- /.box-header -->
 				<div class="box-body">
@@ -36,10 +36,11 @@
 						<thead>
 							<tr>
 								<th width="5%">SL</th>
-								<th>ID NO</th>
-								<th>Name</th>
-                				<th>Amount</th>
 								<th>Date</th>
+                				<th>Amount</th>
+								<th>Description</th>
+								<th>Image</th>
+								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -47,10 +48,17 @@
 								
 							<tr>
 								<td>{{ $key+1 }}</td>
-								<td>{{ $Value['user']['id_no']}}</td>
-								<td>{{ $Value['user']['name']}}</td>
+								<td>{{ date('d-m-Y', strtotime($Value->date)) }}</td>
 								<td>{{ $Value->amount}}</td>
-								<td>{{ date('M Y', strtotime($Value->date)) }}</td>
+								<td>{{ $Value->description}}</td>
+								<td><img src="{{ (!empty($Value->image))? 
+									url('upload/cost_images/'.$Value->image):url('upload/no_image.jpg') }}"
+									style="width:80px; height:80px;">
+								</td>
+								<td>
+									<a href="{{ route('edit.other.cost',$Value->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+									<a href="{{ route('delete.other.cost',$Value->id) }}" class="btn btn-danger" id="delete"><i class="fa fa-trash"></i></a>
+								</td>
 							</tr>	
 							@endforeach			
 						</tbody>

@@ -67,7 +67,7 @@ class EmployeeMonthlySalaryController extends Controller
             $salary = (float)$attend['user']['salary'];
             $salaryperday = (float)$salary/30;
             $totalsalaryminus =(float)$absentcount*(float)$salaryperday;
-            $totalsalary = (float)$salary-(float)$totalsalaryminus;
+            $totalsalary = round((float)$salary-(float)$totalsalaryminus);
     
             $html[$key]['tdsource'] .='<td>'.$totalsalary.' PKR'.'</td>';
             $html[$key]['tdsource'] .='<td>';

@@ -33,6 +33,7 @@ use App\Http\Controllers\Backend\Marks\MarksGradeController;
 
 use App\Http\Controllers\Backend\Account\StudentFeeController;
 use App\Http\Controllers\Backend\Account\AccountEmpSalaryController;
+use App\Http\Controllers\Backend\Account\OtherCostController;
 
 
 
@@ -346,9 +347,16 @@ Route::prefix('accounts')->group(function(){
     Route::post('/account/empsalary/store', [AccountEmpSalaryController::class, 'AccountEmployeeStore' ])->name('store.account.empsalary');
     
    
-    
-   
+     // All Routes regarding Employee Salary
 
+     Route::get('/other/cost/view', [OtherCostController::class, 'OtherCostView' ])->name('other.cost.view');
+     Route::get('/other/cost/Add', [OtherCostController::class, 'OtherCostAdd' ])->name('other.cost.add');
+     Route::post('/other/cost/store', [OtherCostController::class, 'OtherCostStore' ])->name('store.other.cost');
+     Route::get('/other/cost/Edit/{id}', [OtherCostController::class, 'OtherCostEdit' ])->name('edit.other.cost');
+     Route::post('/other/cost/update/{id}', [OtherCostController::class, 'OtherCostUpdate' ])->name('update.other.cost');
+     Route::get('/other/cost/delete/{id}', [OtherCostController::class, 'OtherCostDelete' ])->name('delete.other.cost');
+     
+     
 
 
 }); // End of Accounts Management

@@ -69,7 +69,7 @@ class AccountEmpSalaryController extends Controller
         $html['thsource'] .= '<th>Employee Name</th>';
         $html['thsource'] .= '<th>Basic Salary</th>';
         $html['thsource'] .= '<th>Salary for this Month</th>';
-        $html['thsource'] .= '<th>Select</th>';
+        $html['thsource'] .= '<th>Select to Pay</th>';
     
     
         foreach ($data as $key => $attend) {
@@ -91,14 +91,14 @@ class AccountEmpSalaryController extends Controller
             $html[$key]['tdsource']  = '<td>'.($key+1).'</td>';
             $html[$key]['tdsource'] .= '<td>'.$attend['user']['id_no']. 
             '<input type="hidden" name="date" value= " '.$date.' " >'.'</td>';
-            
+
             $html[$key]['tdsource'] .= '<td>'.$attend['user']['name'].'</td>';
             $html[$key]['tdsource'] .= '<td>'.$attend['user']['salary'].'</td>';
             
             $salary = (float)$attend['user']['salary'];
             $salaryperday = (float)$salary/30;
             $totalsalaryminus =(float)$absentcount*(float)$salaryperday;
-            $totalsalary = (float)$salary-(float)$totalsalaryminus;
+            $totalsalary = round((float)$salary-(float)$totalsalaryminus);
     
             $html[$key]['tdsource'] .='<td>'.$totalsalary.' PKR'. 
             '<input type="hidden" name="amount[]" value= " '.$totalsalary.' " >'.'</td>';
