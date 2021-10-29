@@ -55,7 +55,7 @@
 		  @endif
         <li class="treeview {{ ($prefix== '/profile')?'active':'' }}">
           <a href="#">
-            <i data-feather="mail"></i> <span>Manage Profile</span>
+            <i data-feather="user"></i> <span>Manage Profile</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
@@ -68,7 +68,7 @@
 		
         <li class="treeview {{ ($prefix== '/setups')?'active':'' }}">
           <a href="#">
-            <i data-feather="mail"></i> <span>Setup Management</span>
+            <i data-feather="list"></i> <span>Setup Management</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
@@ -88,10 +88,11 @@
           </ul>
         </li>
         
+        
 
         <li class="treeview {{ ($prefix== '/students')?'active':'' }}">
           <a href="#">
-            <i data-feather="mail"></i> <span>Student Management</span>
+            <i data-feather="grid"></i> <span>Student Management</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
@@ -108,7 +109,7 @@
         
         <li class="treeview {{ ($prefix== '/employees')?'active':'' }}">
           <a href="#">
-            <i data-feather="mail"></i> <span>Employee Management</span>
+            <i data-feather="share"></i> <span>Employee Management</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
@@ -125,7 +126,7 @@
 
         <li class="treeview {{ ($prefix== '/marks')?'active':'' }}">
           <a href="#">
-            <i data-feather="mail"></i> <span>Marks Management</span>
+            <i data-feather="book"></i> <span>Marks Management</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
@@ -141,7 +142,7 @@
 
         <li class="treeview {{ ($prefix== '/accounts')?'active':'' }}">
           <a href="#">
-            <i data-feather="mail"></i> <span>Account Management</span>
+            <i data-feather="inbox"></i> <span>Account Management</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
@@ -154,26 +155,26 @@
           </ul>
         </li> 
 
-        <li class="header nav-small-cap">User Interface</li>
+        <li class="header nav-small-cap">Reports Interface</li>
 		  
-        <li class="treeview">
+        <li class="treeview {{ ($prefix== '/Reports')?'active':'' }}">
           <a href="#">
-            <i data-feather="grid"></i>
-            <span>Components</span>
+            <i data-feather="server"></i> <span>Reports Management</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="components_alerts.html"><i class="ti-more"></i>Alerts</a></li>
-            <li><a href="components_badges.html"><i class="ti-more"></i>Badge</a></li>
-            <li><a href="components_buttons.html"><i class="ti-more"></i>Buttons</a></li>
-            <li><a href="components_sliders.html"><i class="ti-more"></i>Sliders</a></li>
-            <li><a href="components_dropdown.html"><i class="ti-more"></i>Dropdown</a></li>
-         
+            <li class="{{ ($route== 'monthly.profit.view')?'active':'' }}"><a href="{{ route('monthly.profit.view') }}"><i class="ti-more"></i>Monthly-Yearly Reports</a></li>
+            <li class="{{ ($route== 'marksheet.generate.view')?'active':'' }}"><a href="{{ route('marksheet.generate.view') }}"><i class="ti-more"></i>Marksheet Generate</a></li>
+            <li class="{{ ($route== 'Attendence.report.view')?'active':'' }}"><a href="{{ route('Attendence.report.view') }}"><i class="ti-more"></i>Employee Attendence</a></li>
+            <li class="{{ ($route== 'student.result.view')?'active':'' }}"><a href="{{ route('student.result.view') }}"><i class="ti-more"></i>Student Result</a></li>
+            <li class="{{ ($route== 'student.IDcard.view')?'active':'' }}"><a href="{{ route('student.IDcard.view') }}"><i class="ti-more"></i>Student ID Card</a></li>
+            
           </ul>
-        </li>
-		
+        </li> 
+        
+        
     </section>
 	
 	<div class="sidebar-footer">

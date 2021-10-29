@@ -68,7 +68,7 @@
 				<div class="form-group">
 					<div class="controls"> 
 					  <img src="{{ url('upload/no_image.jpg') }}" id="showImage"
-					   style="width:100px; height:100px; border:1px; solid #000000;">
+					   style="width:100px; height:100px; border:1px solid #000000">
 					</div>
 				  </div>
                

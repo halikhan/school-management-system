@@ -2,8 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\ProfileController;
+
 use App\Http\Controllers\Backend\Setup\ExamTypeController;
 use App\Http\Controllers\Backend\Setup\StudentClassController;
 use App\Http\Controllers\Backend\Setup\StudentYearController;
@@ -35,6 +37,12 @@ use App\Http\Controllers\Backend\Account\StudentFeeController;
 use App\Http\Controllers\Backend\Account\AccountEmpSalaryController;
 use App\Http\Controllers\Backend\Account\OtherCostController;
 
+use App\Http\Controllers\Backend\Reports\ProfitController;
+use App\Http\Controllers\Backend\Reports\MarksheetGenerateController;
+use App\Http\Controllers\Backend\Reports\AttendenceRepController;
+use App\Http\Controllers\Backend\Reports\StudentResultController;
+use App\Http\Controllers\Backend\Reports\StudentIDcardController;
+
 
 
 
@@ -48,6 +56,11 @@ use App\Http\Controllers\Backend\Account\OtherCostController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::group(['middleware' => 'prevent-back-history'],function(){
+
+
+  
 
 Route::get('/', function () {
     return view('auth.login');
@@ -95,6 +108,7 @@ Route::prefix('profile')->group(function(){
 
 Route::prefix('setups')->group(function(){
 
+    // All routes about Student Class
     Route::get('/student/class/veiw', [StudentClassController::class, 'VeiwStudent' ])->name('student.class.veiw');
     Route::get('/student/class/add', [StudentClassController::class, 'StudentClassAdd' ])->name('student.class.add');
     Route::post('/student/class/store', [StudentClassController::class, 'StudentClassStore' ])->name('store.student.class');
@@ -362,8 +376,44 @@ Route::prefix('accounts')->group(function(){
 }); // End of Accounts Management
 
 
+// All Routes regarding Report Management
 
+Route::prefix('Reports')->group(function(){
 
+    // All Routes regarding Monthly-Yearly Report
+
+    Route::get('/monthly/profit/view', [ProfitController::class, 'MonthlyProfitView' ])->name('monthly.profit.view');
+    Route::get('/monthly/profit/datewise', [ProfitController::class, 'MonthlyProfitDatewise' ])->name('report.profit.datewise.get');
+    Route::get('/report/profit/PDF', [ProfitController::class, 'ReportProfitPDF' ])->name('report.profit.pdf');
+    
+    
+
+    // All Routes regarding Marksheet Generate
+
+    Route::get('/marksheet/generate/view', [MarksheetGenerateController::class, 'MarksheetGenerateView' ])->name('marksheet.generate.view');
+    Route::get('/marksheet/report/get', [MarksheetGenerateController::class, 'GetMarksheetReport' ])->name('marksheet.report.get');
+    
+    
+   // All Routes regarding Atttendence Report 
+
+   Route::get('/Attendence/report/view', [AttendenceRepController::class, 'AttendenceRepView' ])->name('Attendence.report.view');
+   Route::get('/Attendence/report/get', [AttendenceRepController::class, 'AttendenceRepGET' ])->name('attendence.report.get');
+   
+
+    // All Routes regarding Student Result
+
+    Route::get('/student/result/view', [StudentResultController::class, 'StudentResultView' ])->name('student.result.view');
+    Route::get('/student/result/get', [StudentResultController::class, 'StudentResultGet' ])->name('student.result.get');
+
+    // All Routes regarding Student Result
+
+    Route::get('/student/IDcard/view', [StudentIDcardController::class, 'StudentIDcardView' ])->name('student.IDcard.view');
+    Route::get('/student/IDcard/get', [StudentIDcardController::class, 'StudentIDcardGet' ])->name('student.IDcard.get');
+    
+    
+    
+
+}); // End of Monthly Report-Yearly 
 
 
 
@@ -374,3 +424,5 @@ Route::prefix('accounts')->group(function(){
 
 
 }); // End of Middleware Auth Route
+
+}); //End of prevent-back-history middleware

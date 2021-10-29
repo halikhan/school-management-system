@@ -34,7 +34,7 @@ class EmployeeMonthlySalaryController extends Controller
         
 
 
-    }
+    } 
 
     public function MonthlySalaryGet(Request $request)
     {

@@ -51,7 +51,7 @@
 							<tr>
 								<td>{{ $key+1 }}</td>
 								<td>{{ $Grade->grade_name }}</td>
-								<td>{{ $Grade->grade_point }}</td>
+								<td>{{ number_format((float)$Grade->grade_point,2) }}</td>
                 				<td>{{ $Grade->start_marks }}</td>
                 				<td>{{ $Grade->end_marks }}</td>
                 				<td>{{ $Grade->start_point }} - {{ $Grade->end_point }}</td>
