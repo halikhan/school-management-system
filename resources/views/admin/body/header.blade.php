@@ -15,12 +15,12 @@
 			    </a>
 			</li>			
 			<li class="btn-group nav-item d-none d-xl-inline-block">
-				<a href="#" class="waves-effect waves-light nav-link rounded svg-bt-icon" title="">
+				<a target="_blank" href="https://www.mystudylife.com/" class="waves-effect waves-light nav-link rounded svg-bt-icon" title="Planner">
 					<i class="ti-check-box"></i>
 			    </a>
 			</li>
 			<li class="btn-group nav-item d-none d-xl-inline-block">
-				<a href="calendar.html" class="waves-effect waves-light nav-link rounded svg-bt-icon" title="">
+				<a target="_blank" href="https://www.timeanddate.com/calendar/" class="waves-effect waves-light nav-link rounded svg-bt-icon" title="calendar 1">
 					<i class="ti-calendar"></i>
 			    </a>
 			</li>
